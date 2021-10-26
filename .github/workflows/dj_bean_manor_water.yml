@@ -31,7 +31,7 @@ jobs:
              sed -i -e '/pt/d' ./config.yaml
              sed -i "15c${{ secrets.TEST_COOKIE }}" ./config.yaml
              sed 's/&/\n/g' ./config.yaml
-             sed -i "/pt/s/^/  - /g" ./config.yaml
+             sed -i "/pt_key/s/^/  - /g" ./config.yaml
              sed -i "s/aaa/${{ secrets.TG_BOT_TOKEN }}/g" ./config.yaml
              sed -i "s/bbb/${{ secrets.TG_USER_ID }}/g" ./config.yaml
              sed -i "s/weixin/${{ secrets.WECHAT_WORK }}/g" ./config.yaml
