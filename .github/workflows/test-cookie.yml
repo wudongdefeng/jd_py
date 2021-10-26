@@ -14,10 +14,15 @@ jobs:
                   
           - name: runs
             run: |                         
-                sed -i '16,17d' ./config.yaml
-                sed -i "15c${{ secrets.TEST_COOKIE }}" ./config.yaml
-                sed 's/&/\n/g' ./config.yaml
-                sed -i "15,17s/^/  - /g" ./config.yaml
-
+                sed -i -e '/pt/d' ./config.yaml
                 cat ./config.yaml
+      
+                sed -i "15c${{ secrets.TEST_COOKIE }}" ./config.yaml
+             
+                cat ./config.yaml
+             
+             
+                sed 's/&/\n/g' ./config.yaml
+                cat ./config.yml
 
+                
