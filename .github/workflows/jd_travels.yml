@@ -31,7 +31,11 @@ jobs:
              sed -i "15c/${{ secrets.JD_COOKIE1 }}" ./config.yaml
              sed -i "16c/${{ secrets.JD_COOKIE2 }}" ./config.yaml
              sed -i "17c/${{ secrets.JD_COOKIE3 }}" ./config.yaml
-             sed -i "15,17s/^/  - /g" ./config.yaml
+             sed -i "18c/${{ secrets.JD_COOKIE4 }}" ./config.yaml
+             sed -i "19c/${{ secrets.JD_COOKIE5 }}" ./config.yaml
+             sed -i "20c/${{ secrets.JD_COOKIE6 }}" ./config.yaml
+             sed -i "15,20s/^/  - /g" ./config.yaml
+
              sed -i "s/aaa/${{ secrets.TG_BOT_TOKEN }}/g" ./config.yaml
              sed -i "s/bbb/${{ secrets.TG_USER_ID }}/g" ./config.yaml
              sed -i "s/default=0/default=1/g" ./db/model.py
