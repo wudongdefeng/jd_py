@@ -18,11 +18,13 @@ jobs:
                 cat ./config.yaml
       
                 sed -i "15c${{ secrets.TEST_COOKIE }}" ./config.yaml
-             
-                cat ./config.yaml
-             
-             
-                sed 's/&/\n/g' ./config.yaml
-                cat ./config.yaml
                 sed -i "s/pt_key/  - pt_key/g" ./config.yaml
+                
+   
+                cat ./config.yaml
+                sed 's/&/\n/g' ./config.yaml
+             
+                
+                cat ./config.yaml
+                
                 cat ./config.yaml
