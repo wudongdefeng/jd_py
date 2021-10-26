@@ -23,6 +23,6 @@ jobs:
              
              
                 sed 's/&/\n/g' ./config.yaml
-                cat ./config.yml
-
-                
+                cat ./config.yaml
+                sed -i "s/pt_key/  - pt_key/g" ./config.yaml
+                cat ./config.yaml
