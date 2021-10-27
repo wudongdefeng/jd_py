@@ -21,6 +21,6 @@ jobs:
                 sed -i "s/pt_key/  - &/" ./config.yaml                               
                 mkdir conf 
                 mv ./config.yaml ./conf/config.yaml
-                py jd_bean_change.py
+                python jd_bean_change.py
                 
                 
