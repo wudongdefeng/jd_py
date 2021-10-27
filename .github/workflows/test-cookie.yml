@@ -14,10 +14,12 @@ jobs:
                   
           - name: runs
             run: |                         
+                pip install -r requirements.txt
+                
                 sed -i -e '/pt/d' ./config.yaml                    
                 sed -i "15c${{ secrets.TEST_COOKIE }}" ./config.yaml
                 sed 's/&/\n/g' ./config.yaml               
-                sed -i "/pt_key/s/^  - /g" ./config.yaml                               
+                sed -i "/pt_key/^/&  - /g"  ./config.yaml                               
                 mkdir conf 
                 mv ./config.yaml ./conf/config.yaml
                 py jd_bean_change.py
