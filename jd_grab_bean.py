@@ -3,7 +3,7 @@
 # @Time    : 2021/7/29 10:34 上午
 # @File    : jd_grab_bean.py
 # @Project : jd_scripts
-# @Cron    : #5 2,22 * * *
+# @Cron    : 1 0 * * *
 # @Desc    : 京东APP->首页->领京豆->抢京豆
 import aiohttp
 import asyncio
@@ -12,8 +12,10 @@ from config import USER_AGENT
 from urllib.parse import urlencode
 from utils.console import println
 from utils.jd_init import jd_init
-from utils.process import get_code_list
-from db.model import Code, CODE_JD_GRAB_BEAN
+from db.model import Code
+
+# 抢京豆
+CODE_JD_GRAB_BEAN = 'jd_grab_bean'
 
 
 @jd_init
@@ -122,7 +124,6 @@ class JdGrabBean:
         }
 
         item_list = Code.get_code_list(CODE_JD_GRAB_BEAN)
-        item_list.extend(get_code_list(CODE_JD_GRAB_BEAN))
         for item in item_list:
             try:
                 account, code = item.get('account'), item.get('code')
@@ -159,5 +160,5 @@ class JdGrabBean:
 
 if __name__ == '__main__':
     from utils.process import process_start
-    process_start(JdGrabBean, '抢京豆', code_key=CODE_JD_GRAB_BEAN)
+    process_start(JdGrabBean, '抢京豆', code_key=CODE_JD_GRAB_BEAN, help=True)
 
