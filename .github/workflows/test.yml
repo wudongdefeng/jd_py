@@ -29,4 +29,4 @@ jobs:
              TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
              TG_USER_ID: ${{ secrets.TG_USER_ID }}
             run:
-                 curl -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage" -d "chat_id=$TG_USER_ID&text=py已更新
+                 curl -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage" -d "chat_id=$TG_USER_ID&text=py已更新"
