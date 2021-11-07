@@ -24,3 +24,6 @@ jobs:
               token: ${{ secrets.USER_TOKEN }}
               repository: ${{ github.repository }}
               retain_days: 1
+          - name: RUNS
+            run:
+                 curl -X POST "https://api.telegram.org/bot${{ secrets.TG_USER_ID }}\:${{ secrets.TG_BOT_TOKEN }}/sendMessage" -d "chat_id=-1001401411583&text=py已更新
