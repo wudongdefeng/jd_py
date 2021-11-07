@@ -45,7 +45,7 @@ jobs:
           git config user.email 'github-actions-bot@google.com'
           git config --global user.name "actions-bot"
           git add .
-          git commit -m "update by Action" -a  && curl -X POST "https://api.telegram.org/bot${{ secrets.TG_USER_ID }}:${{ secrets.TG_BOT_TOKEN }}/sendMessage" -d "chat_id=-1001401411583&text=py更新于:${time}!"  || echo "Nothing to update"
+          git commit -m "update by Action" -a  && curl -X POST "https://api.telegram.org/bot${{ secrets.TG_USER_ID }}:${{ secrets.TG_BOT_TOKEN }}/sendMessage" -d "chat_id=-1001401411583&text=py已更新"  || echo "Nothing to update"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
