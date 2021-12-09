@@ -1,4 +1,4 @@
-name: jd_farm
+name: jd_fruit
 
 on:
     workflow_dispatch:
