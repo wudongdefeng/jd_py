@@ -33,8 +33,6 @@ class JdSecondCoin:
 
     encrypt_project_id = None
 
-    source_code = 'wh5'
-
     async def request(self, session, params, method='POST'):
         """
         请求数据
@@ -60,7 +58,7 @@ class JdSecondCoin:
         except Exception as e:
             println('{}, 请求数据失败, {}'.format(self.account, e.args))
 
-    async def get_encrypt_project_id(self, session):
+    async def get_tasks(self, session):
         """
         :return:
         """
@@ -73,28 +71,17 @@ class JdSecondCoin:
 
         await asyncio.sleep(0.5)
 
-        encrypt_project_id = res['result']['assignmentResult']['encryptProjectId']
-
-        return encrypt_project_id
-
-    async def get_tasks(self, session):
-        """
-        :return:
-        """
-
-        self.encrypt_project_id = await self.get_encrypt_project_id(session)
-        if not self.encrypt_project_id:
-            println('{}, 获取活动ID失败!'.format(self.account))
+        self.encrypt_project_id = res['result']['assignmentResult']['encryptProjectId']
 
         res = await self.request(session, {
             'functionId': 'queryInteractiveInfo',
-            'body': json.dumps({"encryptProjectId": self.encrypt_project_id, "sourceCode": self.source_code}),
+            'body': json.dumps({"encryptProjectId": self.encrypt_project_id, "sourceCode": "wh5"}),
             'client': 'wh5',
             'clientVersion': '1.0.0'
         })
         if res.get('code') != '0':
             return None
-        return res.get('assignmentList')
+        return res['assignmentList']
 
     @logger.catch
     async def do_tasks(self, session, task_list):
@@ -130,7 +117,7 @@ class JdSecondCoin:
                             'encryptProjectId': self.encrypt_project_id,
                             'itemId': item['itemId'],
                             'actionType': 1,
-                            "sourceCode": self.source_code,
+                            "sourceCode": "wh5",
                             "completionFlag": "",
                             "ext": {}
                     }
@@ -158,7 +145,7 @@ class JdSecondCoin:
                         'encryptProjectId': self.encrypt_project_id,
                         "actionType": 0,
                         "completionFlag": True,
-                        "sourceCode": self.source_code,
+                        "sourceCode": "wh5",
                         "ext": {}
                     }
                     params = {
@@ -177,7 +164,7 @@ class JdSecondCoin:
                         "itemId": task['ext'][task['ext']['extraType']][i]['itemId'],
                         "actionType": 0,
                         "completionFlag": "",
-                        "sourceCode": self.source_code,
+                        "sourceCode": "wh5",
                         "ext": {},
                         'encryptProjectId': self.encrypt_project_id,
                     }

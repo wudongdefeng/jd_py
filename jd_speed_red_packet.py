@@ -14,6 +14,7 @@ from jd_speed_sign import JdSpeedSign
 from utils.console import println
 from utils.process import process_start
 
+
 class JdSpeedRedPocket(JdSpeedSign):
     """京东极速版签到红包
 

@@ -5,7 +5,6 @@
 # @Project : jd_scripts
 # @Cron    : 10 */1 * * *
 # @Desc    : 京东APP->京东电器->东东工厂, 定时收电量
-import asyncio
 import aiohttp
 
 from jd_factory import JdFactory

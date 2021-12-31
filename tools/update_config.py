@@ -57,11 +57,6 @@ class Config:
         'tg_bot_api': 'TG代理',
         'joy_exchange_num': '宠汪汪兑换京豆数, 选项, 20, 500, 默认20',
         'jd_supermarket_exchange': '京东超市蓝币兑换物品,选项: 20, 1000, 或者其它商品唯一关键字, 默认20',
-        'js_execute_list': '需要执行的js脚本列表, 填写相对于/scripts/的路径或者绝对路径, 默认一次定时任务运行所有,'
-                           ' 如需要单独配置定时任务, 请在conf/crontab.sh中配置任务,'
-                           ' 如: 10 10 * * * pyjs /scripts/node_scripts/jd_cfd.js',
-        'js_repo_list': '需要自动更新的JS仓库列表，填写健值对, 仓库目录名:仓库地址',
-
     }
 
     def __init__(self):

@@ -76,15 +76,18 @@ class JdCutePet:
             println('{}, 访问服务器异常:{}!'.format(self.account, e.args))
     
     @logger.catch
-    async def help_friend(self, session):
+    async def help_friend(self, session, max_count=5):
         """
         助力好友
+        :param max_count:
         :param session:
         :return:
         """
         item_list = Code.get_code_list(CODE_CUT_PET)
-
+        count = 0
         for item in item_list:
+            if count >= max_count:
+                break
             friend_account, friend_code = item.get('account'), item.get('code')
             if self.account == friend_account:
                 continue
@@ -94,6 +97,7 @@ class JdCutePet:
             if data['resultCode'] != '0':
                 println('{}, 无法助力好友:{}, {}!'.format(self.account, friend_account, data['message']))
             else:
+                count += 1
                 println('{}, 成功助力好友:{}!'.format(self.account, friend_account))
 
     @logger.catch

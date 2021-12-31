@@ -5,7 +5,6 @@
 # @Project : jd_scripts
 # @Cron    : 45 7,12,19 * * *
 # @Desc    : 京东APP->京东到家->签到->所有任务
-import moment
 import aiohttp
 import asyncio
 from utils.console import println

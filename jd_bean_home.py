@@ -116,9 +116,8 @@ class JdBeanHome:
         if res['code'] != '0':
             println('{}, 获取首页数据失败!', self.account)
             return False
-        data = res.get('data', dict())
 
-        if data.get('taskProgress', -1) == data.get('taskThreshold', 0):
+        if res['data']['taskProgress'] == res['data']['taskThreshold']:
             println('{}, 今日已完成领额外京豆任务!'.format(self.account))
             return
 
@@ -142,8 +141,8 @@ class JdBeanHome:
         res = await self.request(session, 'homeFeedsList', {"page": 1})
         if res['code'] != '0' or 'errorCode' in res:
             println('{}, 无法浏览商品任务!'.format(self.account))
-        data = res.get('data', dict())
-        if data.get('taskProgress', 0) == data.get('taskThreshold', -1):
+
+        if res['data']['taskProgress'] == res['data']['taskThreshold']:
             println('{}, 今日已完成浏览商品任务!'.format(self.account))
             return
 

@@ -5,7 +5,6 @@
 # @Project : jd_scripts
 # @Cron    : */40 * * * *
 # @Desc    : 京东APP->京东到家->签到->鲜豆庄园, 定时领水滴/浇水
-import asyncio
 import aiohttp
 
 from dj_bean_manor import DjBeanManor

@@ -10,7 +10,6 @@ import json
 import time
 import aiohttp
 
-
 from urllib.parse import quote
 
 from utils.logger import logger
@@ -68,7 +67,7 @@ class JdBigWinner:
             'linkId': self.ffl_link_id,
         }
         body = 'functionId=gambleOpenReward&body={}&t={}&appid=' \
-               'activities_platform&clientVersion=3.5.0'.format(quote(json.dumps(params)), int(time.time()*1000))
+               'activities_platform&clientVersion=3.5.0'.format(quote(json.dumps(params)), int(time.time() * 1000))
         session.headers.add('Content-Type', 'application/x-www-form-urlencoded')
         try:
             response = await session.post(url=url, data=body)
@@ -98,7 +97,7 @@ class JdBigWinner:
             'linkId': self.ffl_link_id,
         }
         body = 'functionId=gambleChangeReward&body={}&t={}&appid=' \
-               'activities_platform&clientVersion=3.5.0'.format(quote(json.dumps(params)), int(time.time()*1000))
+               'activities_platform&clientVersion=3.5.0'.format(quote(json.dumps(params)), int(time.time() * 1000))
         session.headers.add('Content-Type', 'application/x-www-form-urlencoded')
         try:
             response = await session.post(url=url, data=body)
@@ -143,7 +142,7 @@ class JdBigWinner:
             'linkId': self.ffl_link_id,
             'rewardType': reward_data['rewardType']
         }
-        body = 'functionId=gambleObtainReward&body={}&t={}&appid=activities_platform&clientVersion=3.5.0'\
+        body = 'functionId=gambleObtainReward&body={}&t={}&appid=activities_platform&clientVersion=3.5.0' \
             .format(quote(json.dumps(params)), int(time.time()) * 1000)
         session.headers.add('Content-Type', 'application/x-www-form-urlencoded')
 
@@ -159,7 +158,7 @@ class JdBigWinner:
 
             data = data['data']
 
-            # self.message = '【活动名称】大赢家翻翻乐【京东账号】{}【奖励金额】{}￥【活动入口】' \
+            # self.message = '【活动名称】大赢家翻翻乐\n【京东账号】{}\n【奖励金额】{}￥\n【活动入口】' \
             #                 '京东极速版->我的->XX大赢家->翻翻乐!'.format(self.account, data['amount'])
 
             withdraw_data = {  # 提现参数
@@ -175,7 +174,7 @@ class JdBigWinner:
                 'linkId': self.ffl_link_id,
             }
             body = 'functionId=apCashWithDraw&body={}&t={}&appid=activities_platform' \
-                   '&clientVersion=3.5.0'.format(quote(json.dumps(withdraw_data)), int(time.time()*1000))
+                   '&clientVersion=3.5.0'.format(quote(json.dumps(withdraw_data)), int(time.time() * 1000))
             response = await session.post(url=url, data=body)
             text = await response.text()
             data = json.loads(text)
@@ -216,4 +215,5 @@ class JdBigWinner:
 
 if __name__ == '__main__':
     from utils.process import process_start
+
     process_start(JdBigWinner, '翻翻乐')

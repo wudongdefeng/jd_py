@@ -140,25 +140,6 @@ class JxSign:
                 break
             await asyncio.sleep(3)
 
-    async def run_help(self):
-        """
-        """
-        await self.get_encrypt()
-        async with aiohttp.ClientSession(headers=self.headers, cookies=self.cookies) as session:
-            item_list = Code.get_code_list(CODE_KEY)
-            if self.sort < 1:
-                for item in item_list:
-                    if item['account'] == '作者':
-                        item_list.remove(item)
-                        item_list.insert(0, item)
-            for item in item_list:
-                account, code = item.get('account'), item.get('code')
-                res = await self.request(session, 'query', {
-                    'signhb_source': 5, 'smp': code, 'type': 1, '_stk': 'signhb_source,smp,type'
-                })
-                println('{}, 助力好友:{}, {}'.format(self.account, account, json.dumps(res)))
-                await asyncio.sleep(2)
-
     async def run(self):
         """
         :return:
@@ -170,7 +151,4 @@ class JxSign:
 
 
 if __name__ == '__main__':
-    # from config import JD_COOKIES
-    # app = JxSign(**JD_COOKIES[-1])
-    # asyncio.run(app.run_help())
-    process_start(JxSign, '京喜-签到领红包', code_key=CODE_KEY, help=True)
+    process_start(JxSign, '京喜-签到领红包')

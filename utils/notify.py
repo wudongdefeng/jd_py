@@ -171,9 +171,6 @@ def notify(title, content):
 
 
 def push_server(title, content):
-    """
-    server酱消息推送
-    """
     if not SERVER_SEND_KEY:
         println("\n未配置SERVER_SEND_KEY, 不推送server酱消息...")
         return
@@ -187,7 +184,7 @@ def push_server(title, content):
         else:
             content = content.replace('【京东账号】', '### 【京东账号】')
         payload = {'text': title, 'desp': content}
-        requests.post(url, data=payload, headers=headers)
+        requests.post(url, params=payload, headers=headers)
         println('\n成功推送消息到server酱!')
     except Exception as e:
         println('\nserver酱消息通知异常:{}'.format(e.args))
