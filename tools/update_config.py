@@ -34,7 +34,6 @@ class Config:
         'debug': '控制台输出: true/false',
         'log_days': '日志保留天数, 默认3天',
         'process_num': '脚本默认开启进程数量',
-        'joy_process_num': '宠汪汪脚本开启进程数',
         'jd_cookies': '京东cookies, 包含pt_key=xx;pt_pin=xx;即可, 中间不能有空格, 分号不能少。如需给cookie添加备注, 可在其后面添加: `remark=账号1;`, 例如:`pt_pin=jd_78b;pt_key=AAJgyqEMOxU;remark=账号1;`',
         'jd_farm_bean_card': '东东农场是否使用水滴换豆卡, 100水滴可以换20京豆, 默认不兑换',
         'jd_farm_retain_water': '东东农场每天保留多少水滴, 用于明天的十次浇水任务',
@@ -45,18 +44,12 @@ class Config:
         'push_plus_group': 'Push+一对多通知组编号, 一对一不需要填',
         'qywx_am': '企业微信通知, 依次填上corpid的值,corpsecret的值,touser的值,agentid,media_id的值，注意用英文,号隔开。',
         'crontab_exclude_scripts': '在此列表中的脚本, 将不会加入到定时任务中, 如需立即生效, 请手动执行命令: docker-entrypoint',
-        'jd_puzzle_process_num': '拼图签到默认进程数量',
-        'jd_try_cid_list': '京东试用商品分类, 英文逗号分隔, 可选列表: 全部商品,家用电器,手机数码,电脑办公,家居家装,美妆护肤,服饰鞋包,母婴玩具,生鲜美食,图书音像,钟表奢品,个人护理,家庭清洁,食品饮料.更多惊喜',
-        'jd_try_type_list': '京东试用类型, 英文逗号分隔, 可选列表: 全部试用,普通试用,闪电试用,30天试用',
-        'jd_try_min_price': '京东试用商品最低价格',
-        'jd_try_goods_count': '京东试用商品提供商品最大数量, 商品提供量多的是辣鸡商品',
-        'jd_try_filter_keywords': '京东试用商品过滤关键词, 用@分隔',
-        'chrome_path': 'chromium路径, 默认不需要修改，除非你是本地运行或者进行开发。',
-        'joy_feed_count': '宠汪汪喂食狗粮克数',
         'server_send_key': 'server酱通知key',
         'tg_bot_api': 'TG代理',
-        'joy_exchange_num': '宠汪汪兑换京豆数, 选项, 20, 500, 默认20',
-        'jd_supermarket_exchange': '京东超市蓝币兑换物品,选项: 20, 1000, 或者其它商品唯一关键字, 默认20',
+        'jd_free_trials_min_price': '京东免费试用商品最低价格',
+        'jd_free_trials_max_count': '京东免费试用商品最多数量',
+        'jd_free_trials_filter_keywords': '免费试用过滤关键词, 试用@分割, 例如:  孕妇@内衣@内裤',
+        'jd_free_trials_categories': '免费试用分类, 用英文逗号分割, 例如: 服饰鞋包,闪电试,手机数码,钟表奢品,个人护理,食品饮料,家用电器,电脑办公,美妆护肤'
     }
 
     def __init__(self):
