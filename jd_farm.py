@@ -305,17 +305,14 @@ class JdFarm:
         领取额外奖励
         :return:
         """
-        data = await self.request(session, 'masterHelpTaskInitForFarm')
-
-        if 'masterHelpPeoples' not in data or len(data['masterHelpPeoples']) < 5:
-            println('{}, 获取助力信息失败或者助力不满5人, 无法领取额外奖励!'.format(self.account))
-            return
-
-        award_res = await self.request(session, 'masterGotFinishedTaskForFarm')
-        if award_res['code'] == '0':
-            println('{}, 成功领取好友助力奖励, {}g水滴!'.format(self.account, award_res['amount']))
-        else:
-            println('{}, 领取好友助力奖励失败, {}'.format(self.account, award_res))
+        for i in range(5):
+            award_res = await self.request(session, 'receiveStageEnergy')
+            if award_res['code'] == '0':
+                println('{}, 成功领取好友助力奖励, {}g水滴!'.format(self.account, award_res['amount']))
+            else:
+                println('{}, 领取好友助力奖励失败, {}'.format(self.account, award_res))
+                break
+            await asyncio.sleep(2)
 
     @logger.catch
     async def turntable(self, session):
