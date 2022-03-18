@@ -1,0 +1,43 @@
+name: zjd
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "5 1,19 * * *"
+    watch:
+        types: [started]
+    repository_dispatch:
+        types: zjd
+
+jobs:
+    build:
+        runs-on: ubuntu-latest        
+        steps:
+            #- uses: actions/checkout@v1
+            - name: Checkout
+              run: |
+                  git clone -b master https://github.com/wudongdefeng/tem-update.git ~/jd
+                  cd ~/jd
+                  npm install -g typescript
+                  npm install -g ts-node                  
+                  sed -i "s/GITHUB/GITLAB/g" jd_zjd_v0.2.ts 
+                  sed -i '/GITHUB/,+6d' jdCookie.js
+                  
+            - name: Use Node.js 14.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14.15.0
+                  
+            - name: run
+              run: |
+                cd ~/jd
+                ts-node jd_zjd_v0.2.ts
+                                    
+              env:   
+                  JD_COOKIE: ${{ secrets.JD_COOKIE}}
+                  JD_DEBUG: false
+                  TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN}}
+                  TG_USER_ID: ${{ secrets.TG_USER_ID}}
+                  QYWX_KEY: ${{ secrets.QYWX_KEY}}
+                  QYWX_AM: ${{ secrets.QYWX_AM}}
+                 
